@@ -1,6 +1,15 @@
 import numpy as np
 import pickle
 
+with open("mammogram cancer image dataset/csv/calc_case_description_train_set.csv") as f:
+    index = 0
+    allLines = [] 
+    for line in f:
+        allLines.append(line)
+    for i in range(1, len(allLines),2):
+        print(allLines[i].split(","), allLines[i-1].split(",")[-1])
+
+
 
 train_set = []
 test_set = []
