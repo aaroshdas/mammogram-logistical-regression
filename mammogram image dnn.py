@@ -7,6 +7,7 @@ with open("mammogram cancer image dataset/csv/calc_case_description_train_set.cs
     for line in f:
         allLines.append(line)
     for i in range(1, len(allLines),2):
+        #get all lines, since lines are two at one time
         print(allLines[i].split(","), allLines[i-1].split(",")[-1])
 
 
@@ -67,7 +68,7 @@ def back_propagation(inputs, w, b, activationFunc, learningRate, epochs):
             for layer in range(1, len(w)):
                 b[layer] = b[layer]+learningRate*deltas[layer]
                 w[layer] = w[layer]+learningRate*deltas[layer] *np.transpose(As[layer-1])
-        with open("w_b.pkl", "wb") as f:
+        with open("w_b_mammogram_tumor.pkl", "wb") as f:
             pickle.dump((w1,b1), f)
         print("w/b saved")
         print(str(test(test_set, w1, b1, sigmoid)) + "% \n")
@@ -84,7 +85,7 @@ def create_rand_values(dimensions):
 
 w1, b1 = create_rand_values([4096,1000, 300,100, 2])
  
-# with open("w_b.pkl", "rb") as f:
+# with open("w_b_mammogram_tumor.pkl", "rb") as f:
 #     w1,b1 = pickle.load(f)
 print(str(test(test_set, w1, b1, sigmoid)) + "% \n")
 w1, b1 = back_propagation(train_set, w1, b1, sigmoid, 0.01, 5)
