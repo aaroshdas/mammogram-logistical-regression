@@ -1,5 +1,8 @@
 import numpy as np
 import pickle
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
 
 with open("mammogram cancer image dataset/csv/calc_case_description_train_set.csv") as f:
     index = 0
@@ -9,6 +12,15 @@ with open("mammogram cancer image dataset/csv/calc_case_description_train_set.cs
     for i in range(1, len(allLines),2):
         #get all lines, since lines are two at one time
         print(allLines[i].split(","), allLines[i-1].split(",")[-1])
+        print(allLines[i].split(",")[-2])
+        image = mpimg.imread(f'mammogram cancer image dataset/jpeg/{allLines[i].split(",")[-2]}.jpg')
+
+        # Display the image
+        plt.imshow(image)
+        plt.axis('off')  # Optional: Turn off the axes
+        plt.show()
+        input("")
+        
 
 
 
